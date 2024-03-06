@@ -27,10 +27,9 @@
         </div>
     @endif                                         
         <a class="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="#">About</a>
-        <a class="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="#">Category</a>
         <li id="dropdownDefaultButton" data-dropdown-toggle="dropdown" class="relative group">
           <a href="#"
-              class="text-gray-700    focus:outline-none  font-heading  text-sm   inline-flex items-center ">
+              class="text-gray-700  font-semibold  focus:outline-none  hover:text-gray-900 text-sm   inline-flex items-center ">
               Category
               <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                   fill="none" viewBox="0 0 10 6">
@@ -47,8 +46,8 @@
               @foreach ($categories as $category)
                   <li>
                       <a href="{{ route('index', ['id' => $category->id]) }}"
-                          class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                          {{ $category->name }}
+                          class="block px-4 py-2 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-gray-400">
+                          {{ $category->title }}
                       </a>
                   </li>
               @endforeach

@@ -18,6 +18,9 @@ class Event extends Model
         'category_id',
         'quantity',
         'status_id',
+        'date',
+        'location',
+        
     ];
     protected static function boot()
     {
@@ -28,4 +31,5 @@ class Event extends Model
             $event->status_id = 1;
         });
     }
+    
 }
