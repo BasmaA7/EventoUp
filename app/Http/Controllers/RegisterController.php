@@ -39,7 +39,7 @@ class RegisterController extends Controller
       $user->assignRole('organizer');
   
       // Redirection après l'inscription
-      return redirect('/home');
+      return redirect('/addevent');
   }
   
   
