@@ -32,9 +32,11 @@
       @include('includes.navDash')
       <!-- cards -->
        @yield('content')
+       @include('includes.footerDash')
       <!-- end cards -->
     </main>
-  
+ 
+
   </body>
 
   <!-- plugin for charts  -->
