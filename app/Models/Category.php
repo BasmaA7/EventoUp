@@ -13,7 +13,6 @@ class Category extends Model
     use HasRoles;
     protected $fillable =[
         'title',
-        'image',
     ];
 
 

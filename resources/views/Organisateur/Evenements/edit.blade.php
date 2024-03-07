@@ -18,7 +18,7 @@
                 <div class="space-y-4">
                     <div class="mb-4">
                         <label for="title" class="text-lg font-serif">Title:</label>
-                        <input type="text" value="{{$event->}}"  name="title"
+                        <input type="text" value="{{$event->title}}"  name="title"
                             class="ml-2 outline-none py-1 px-2 text-md border-2 rounded-md w-full" />
                     </div>
                     <div class="mb-4">
@@ -32,9 +32,11 @@
                             class="ml-2 outline-none py-1 px-2 text-md border-2 rounded-md w-full" />
                     </div>
                     <div class="mb-4">
-                        <label for="user" class="text-lg font-serif">your id:</label>
-                        <input type="text" name="user_id" 
-                            class="ml-2 outline-none py-1 px-2 text-md border-2 rounded-md w-full" />
+                        <label for="user" class="text-lg font-serif">Validation</label>
+                        <select name="validation">
+                            <option value="manuelle">Validation manuelle</option>
+                            <option value="automatique">Validation automatique</option>
+                        </select>
                     </div>
 
                     <div class="mb-4">

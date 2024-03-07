@@ -36,6 +36,7 @@ public function create()
     }
     
     public function store(CreateEventRequest $request){
+        $userId=Auth::id();
         $categories= Category::all();
         $events = Event::all();
         $date = Carbon::parse($request->input('date'))->format('Y-m-d');
@@ -43,10 +44,8 @@ public function create()
             'title' => $request->input('title'),
             'description' => $request->input('description'),
             'image' => $request->input('image'),
-            'user_id' => $request->input('user_id'),
+            'user_id' => $userId,
             'category_id' => $request->input('category_id'),
-             'user_id' => Auth::id(),
-            'status_id' => 1,
             'quantity' => $request->input('quantity'),
             'date' => $date,
             'location' => $request->input('location'),
@@ -62,18 +61,20 @@ public function create()
         return view('Organisateur.Evenements.edit',compact('categories','event'));
     }
     public function update(UpdateEventRequest $request,Event $event){
+        $userId=Auth::id();
+
         $date = Carbon::parse($request->input('date'))->format('Y-m-d');
         $event->update([
             'title' => $request->input('title'),
             'description' => $request->input('description'),
             'image' => $request->input('image'), 
-            'user_id' => $request->input('user_id'),
+            'user_id' => $userId,
+
             'category_id' => $request->input('category_id'),
-            'status_id' => 1,
             'quantity' => $request->input('quantity'),
             'date' => $date,
             'location' => $request->input('location'),
-        ]);    return redirect()->route('home')
+        ]);    return redirect()->route('dashboard')
                          ->with('seccess','Announcement update successfully');
 
     }
@@ -82,6 +83,12 @@ public function create()
         $categories = Category::all();
         return view('Organisateur.Evenements.edit', compact('category','categories'));
     }
+
+    // public function show(Event $event)
+    // {
+    //     $events = Event::where('status', 'accepted')->paginate(6);
+    //     return view('allevents', compact('events'));
+    // }
 public function destroy(Event $event)
 {
     $event->delete();
@@ -96,4 +103,19 @@ public function showDashboard()
     $reservations = Reservation::all();
     return view('events.index', compact('events', 'reservations'));
 }
+
+public function accept(Event $Event)
+    {
+        Event::where('id',$Event->id)->update(['status'=>'accepted']);
+        return redirect(route('dashboard'));
+
+    }
+    public function refuse(Event $Event)
+    {
+        Event::where('id',$Event->id)->update(['status'=>'refused']);
+        return redirect(route('dashboard'));
+
+    }
+
+  
 }

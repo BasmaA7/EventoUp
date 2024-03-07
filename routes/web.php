@@ -17,7 +17,8 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
+Route::patch('/event/accept/{event}', [EventController::class, 'accept'])->name('accept');
+Route::patch('/event/refuse/{event}', [EventController::class, 'refuse'])->name('refuse');
 Route::get('/organize',  [RegisterController::class, 'showRegistrationForm'])->name('showRegistrationForm');
 Route::post('/organize',  [RegisterController::class, 'registerStore'])->name('registerStore');
 // Route::get('/addevent',[EventController::class,'create'])->name('create');

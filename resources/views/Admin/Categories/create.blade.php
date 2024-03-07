@@ -24,11 +24,7 @@
                             class="ml-2 outline-none py-1 px-2 text-md border-2 rounded-md w-full" />
                     </div>
                   
-                    <div class="mb-4">
-                      <label for="image" class="text-lg font-serif">Image:</label>
-                      <input type="file" name="image"
-                          class="ml-2 outline-none py-1 px-2 text-md border-2 rounded-md w-full" />
-                  </div>
+                  
                     <button type="submit"
                         class="px-6 py-2 mx-auto block rounded-md text-lg font-semibold text-indigo-100 bg-indigo-600">ADD
                         </button>

@@ -21,8 +21,10 @@ return new class extends Migration
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->references('id')->on('categories'); 
             $table->integer('quantity');
-            $table->unsignedBigInteger('status_id');
-            $table->foreign('status_id')->references('id')->on('status'); 
+            $table->string('location'); 
+            $table->datetime('date')->nullable();
+            $table->enum('validation', ['automatique', 'manuelle'])->default('automatique');
+            $table->enum('status', ['accepted', 'refused', 'pending'])->default('pending');
              
             $table->timestamps();
         

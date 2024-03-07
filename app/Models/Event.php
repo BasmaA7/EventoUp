@@ -17,21 +17,12 @@ class Event extends Model
         'user_id',
         'category_id',
         'quantity',
-        'status_id',
         'date',
         'location',
         'validation',
-        
+        'status',         
     ];
-    protected static function boot()
-    {
-        parent::boot();
-
-        static::creating(function ($event) {
-            // Définir la valeur par défaut de status_id à 0 ('archiver') lors de la création d'un nouvel événement
-            $event->status_id = 1;
-        });
-    }
+   
     public function categories(){
         return $this->belongsTo(Category::class);
 

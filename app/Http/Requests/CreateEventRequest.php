@@ -25,7 +25,6 @@ class CreateEventRequest extends FormRequest
         return [
             'title' => 'required|string|max:255',
             'description' => 'required|max:500', 
-            'image' => 'required|image', 
             'category_id' => 'required|integer', 
             'quantity' => 'required|integer',
             'date' => ['required', 'date', 'after_or_equal:' . now()->format('Y-m-d')],

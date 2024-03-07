@@ -32,10 +32,9 @@ class CategoryController extends Controller
 
         $categorie=Category::create([
             'title' => $request->input('title'),
-            'image' => $request->input('image'),
 
         ]);
-        $imagePath = $request->file('image')->store('images/categories', 'public');
+       
 
         return view('home',compact('categorie','categories'));
 

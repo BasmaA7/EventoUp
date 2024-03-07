@@ -207,6 +207,8 @@
                                           <button type="button" class="focus:outline-none  bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Green</button>
                                       </div>
                                   </td>
+                              
+
                               </tr>
                           @endforeach
                       </tbody>
@@ -247,6 +249,7 @@
                                 <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">Location</th>
                                 <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">Status</th>
                                 <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">Action</th>
+                                <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">Evant Satus</th>
                             </tr>
                         </thead>
                         <tbody class="bg-white">
@@ -265,7 +268,7 @@
                                 <td class="py-4 px-6 border-b border-gray-200">{{$event->location}}</td>
                               
                                   <td class="py-4 px-6 border-b border-gray-200">
-                                      <span class="bg-green-500  py-1 px-2 rounded-full text-xs">{{$event->status_id}}</span>
+                                      <span class="bg-green-500  py-1 px-2 rounded-full text-xs">{{$event->status}}</span>
                                   </td>
                                   <td class="py-4 px-6 border-b border-gray-200">
                                     <div class="flex flex-row gap-4">
@@ -280,6 +283,19 @@
                                     </span>
                                     </div>
                                 </td>
+                                <td class="py-4 px-6 border-b border-gray-200">
+                                  <form action="{{ route('accept', $event->id) }}" method="POST">
+                                    @csrf
+                                    @method('PATCH')
+                                    <button type="submit" class="btn btn-primary d-block">accept</button>
+                                </form>
+                                <form action="{{ route('refuse', $event->id) }}" method="POST">
+                                  @csrf
+                                  @method('PATCH')
+                                  <button type="submit" class="btn btn-danger d-block">refuse</button>
+                              </form>
+                              </td>
+
                               </tr>
                           @endforeach
                       </tbody>
