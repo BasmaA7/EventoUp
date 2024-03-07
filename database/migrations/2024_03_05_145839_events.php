@@ -22,8 +22,10 @@ return new class extends Migration
             $table->foreign('category_id')->references('id')->on('categories'); 
             $table->integer('quantity');
             $table->unsignedBigInteger('status_id');
-            $table->foreign('status_id')->references('id')->on('status');  
+            $table->foreign('status_id')->references('id')->on('status'); 
+             
             $table->timestamps();
+        
 
         });
     }

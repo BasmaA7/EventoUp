@@ -26,10 +26,10 @@ class CreateEventRequest extends FormRequest
             'title' => 'required|string|max:255',
             'description' => 'required|max:500', 
             'image' => 'required|image', 
-            'user_id' => 'required|integer',
             'category_id' => 'required|integer', 
             'quantity' => 'required|integer',
             'date' => ['required', 'date', 'after_or_equal:' . now()->format('Y-m-d')],
+            'validation' => 'required|in:automatique,manuelle',
             'location' => 'required|string|max:255',
         ];
     }

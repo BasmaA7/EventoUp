@@ -20,12 +20,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/organize',  [RegisterController::class, 'showRegistrationForm'])->name('showRegistrationForm');
 Route::post('/organize',  [RegisterController::class, 'registerStore'])->name('registerStore');
-Route::get('/addevent',[EventController::class,'index'])->name('index');
-Route::post('/addevent', [EventController::class, 'store'])->name('create');
-Route::get('/dashboard', [EventController::class,'index'])->name('dashboard');
-
-Route::get('/editevent/{event}', [EventController::class, 'edit'])->name('edit');
-Route::put('/editevent/{event}', [EventController::class, 'update'])->name('event.update');
+// Route::get('/addevent',[EventController::class,'create'])->name('create');
+// Route::post('/addevent', [EventController::class, 'store'])->name('create');
+// Route::get('/dashboard', [EventController::class,'index'])->name('dashboard');
+Route::resource('event', EventController::class);
+// Route::get('/editevent/{event}', [EventController::class, 'edit'])->name('edit');
+// Route::put('/editevent/{event}', [EventController::class, 'update'])->name('event.update');
+// Route::delete('/delatevent/{event}', [EventController::class, 'destroy'])->name('destroy');
 Route::resource('categories', CategoryController::class);
 
 

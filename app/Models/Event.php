@@ -20,6 +20,7 @@ class Event extends Model
         'status_id',
         'date',
         'location',
+        'validation',
         
     ];
     protected static function boot()
@@ -31,5 +32,18 @@ class Event extends Model
             $event->status_id = 1;
         });
     }
-    
+    public function categories(){
+        return $this->belongsTo(Category::class);
+
+    }
+
+      
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class);
+    }
 }

@@ -4,6 +4,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
@@ -16,7 +17,9 @@ class RegisterController extends Controller
 
   public function showRegistrationForm()
   {
-      return view('Organisateur.register');
+    $categories = Category::all();
+
+      return view('Organisateur.register',compact('categories'));
   }
   
   public function registerStore(Request $request)
@@ -39,9 +42,10 @@ class RegisterController extends Controller
       $user->assignRole('organizer');
   
       // Redirection après l'inscription
-      return redirect('/addevent');
+      return redirect('/event/create');
   }
   
+
   
 
 

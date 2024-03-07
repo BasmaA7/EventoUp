@@ -1,19 +1,20 @@
 @extends('layouts.mastar')
 @section('content')
-    <form action="{{ route('create') }}" method="post" enctype="multipart/form-data">
+    <form action="{{ route('event.store') }}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="bg-indigo-50 min-h-screen md:px-20 pt-6">
             <div class="bg-white rounded-md px-6 py-10 max-w-2xl mx-auto">
                 <h1 class="text-center text-2xl font-bold text-gray-500 mb-10">ADD Event</h1>
                 @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
                 <div class="space-y-4">
                     <div class="mb-4">
                         <label for="title" class="text-lg font-serif">Title:</label>
@@ -31,11 +32,13 @@
                             class="ml-2 outline-none py-1 px-2 text-md border-2 rounded-md w-full" />
                     </div>
                     <div class="mb-4">
-                        <label for="user" class="text-lg font-serif">your id:</label>
-                        <input type="text" name="user_id"
-                            class="ml-2 outline-none py-1 px-2 text-md border-2 rounded-md w-full" />
+                        <label for="user" class="text-lg font-serif">Validation</label>
+                        <select name="validation">
+                            <option value="manuelle">Validation manuelle</option>
+                            <option value="automatique">Validation automatique</option>
+                        </select>
                     </div>
-
+ 
                     <div class="mb-4">
                         <label for="category" class="text-lg font-serif">Category:</label>
                         <select class="form-control ml-2 outline-none py-1 px-2 text-md border-2 rounded-md w-full"

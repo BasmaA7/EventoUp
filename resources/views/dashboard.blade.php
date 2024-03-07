@@ -1,17 +1,21 @@
-{{-- <x-app-layout>
+<x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Dashboard') }}
         </h2>
-    </x-slot> --}}
+    </x-slot>
     @extends('layouts.dashboard')
     @section('content')
 
+    @if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
         <div class="py-12">
             <div class="w-full px-6 py-6 mx-auto">
                 <!-- row 1 -->
                 <div class="flex flex-wrap -mx-3">
-                    @if (Auth::user()->HasRole('spectator'))
                     <h1>hiiiiiiiiiiiiiiiiiiii</h1>
                     <!-- card1 -->
                   <div class="w-full max-w-full px-3 mb-6 sm:w-1/2 sm:flex-none xl:mb-0 xl:w-1/4">
@@ -36,7 +40,6 @@
                       </div>
                     </div>
                   </div>
-        @endif
                   <!-- card2 -->
                   <div class="w-full max-w-full px-3 mb-6 sm:w-1/2 sm:flex-none xl:mb-0 xl:w-1/4">
                     <div class="relative flex flex-col min-w-0 break-words bg-white shadow-soft-xl rounded-2xl bg-clip-border">
@@ -212,6 +215,139 @@
                 </div>
            
         
+                 
+        
+              </div>
+
+
+
+                             <!-- ***********Table Event********* -->
+   
+ <div>
+  <h1>  Events  </h1>
+ 
+  <div class="overflow-x-auto">
+    <div class="bg-blue-500 hover:bg-blue-700 inline-block font-bold py-2 px-4 rounded-full cursor-pointer">
+        <a href="{{route('event.create')}}" class="bg-blue-500 hover:bg-blue-700  font-bold py-2 px-4 rounded-full inline-block">Add +</a>
+    </div>
+</div>
+               
+
+
+             
+                  <div class="shadow-lg rounded-lg overflow-hidden mx-4 md:mx-10">
+                    <table class="w-full table-fixed">
+                      
+                        <thead>
+                            <tr class="bg-gray-100">
+                                <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">Title</th>
+                                <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">Description</th>
+                                <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">Date</th>
+                                <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">image</th>
+                                <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">Location</th>
+                                <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">Status</th>
+                                <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white">
+                          @foreach ($events as $event)
+                              <tr>
+                                  <td class="py-4 px-6 border-b border-gray-200">{{$event->title}}</td>
+                                  <td class="py-4 px-6 border-b border-gray-200 truncate">{{$event->description}}</td>
+                                  <td class="py-4 px-6 border-b border-gray-200">{{$event->date}}</td>
+                                  <td class="py-4 px-6 border-b border-gray-200">
+                                    @if ($event->image)
+                                        <img src="{{ asset('storage/' . $event->image) }}" alt="{{ $event->title }}" class="w-20 h-20">
+                                    @else
+                                        No Image
+                                    @endif
+                                </td>  
+                                <td class="py-4 px-6 border-b border-gray-200">{{$event->location}}</td>
+                              
+                                  <td class="py-4 px-6 border-b border-gray-200">
+                                      <span class="bg-green-500  py-1 px-2 rounded-full text-xs">{{$event->status_id}}</span>
+                                  </td>
+                                  <td class="py-4 px-6 border-b border-gray-200">
+                                    <div class="flex flex-row gap-4">
+                                      <a class="bg-green-700 mx-1" href="{{ route('event.edit', $event->id) }}">Edit</a>
+                                      {{-- <button type="submit" class="focus:outline-none bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Edit</button> --}}
+                                      <span >
+                                        <form action="{{ route('event.destroy', $event) }}" method="post">
+                                          @csrf
+                                          @method('DELETE')
+                                          <button type="submit" onclick="return confirm('Are you sure you want to delete this event?')">Delete</button>
+                                      </form>
+                                    </span>
+                                    </div>
+                                </td>
+                              </tr>
+                          @endforeach
+                      </tbody>
+                      
+                    </table>
+                </div>
+           
+        
+                 
+        
+              </div>
+ <div>
+  <h1> Admin category  </h1>
+ 
+  <div class="overflow-x-auto">
+    <div class="bg-blue-500 hover:bg-blue-700 inline-block font-bold py-2 px-4 rounded-full cursor-pointer">
+        <a href="{{route('categories.create')}}" class="btn btn-primary">Add +</a>
+    </div>
+ </div>
+               
+
+
+
+                  <div class="shadow-lg rounded-lg overflow-hidden mx-4 md:mx-10">
+
+                    <table class="w-full table-fixed">
+
+                        <thead>
+                            <tr class="bg-gray-100">
+                                <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">Title</th>
+                                <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">Image</th>
+                                <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white">
+                          @foreach ($categories as $category)
+                              <tr>
+                                  <td class="py-4 px-6 border-b border-gray-200">{{$category->title}}</td>
+                                  <td class="py-4 px-6 border-b border-gray-200">
+                                    @if ($category->image)
+                                        <img src="{{ asset('storage/' . $category->image) }}" alt="{{ $category->title }}" class="w-20 h-20">
+                                    @else
+                                        No Image
+                                    @endif
+                                </td>                                  
+                                <td class="py-4 px-6 border-b border-gray-200">
+                                  <div class="flex flex-row gap-4">
+                                    <a class="bg-green-700 mx-1" href="{{ route('categories.edit', $category->id) }}">Edit</a>
+                                    {{-- <button type="submit" class="focus:outline-none bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Edit</button> --}}
+                                    <span >
+                                      <form action="{{ route('categories.destroy', $category) }}" method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" onclick="return confirm('Are you sure you want to delete this event?')">Delete</button>
+                                    </form>
+                                  </span>
+                                  </div>
+                              </td>
+                              </tr>
+
+                          @endforeach
+                      </tbody>
+                      
+                    </table>
+                </div>
+           
+                @endif
+
                  
         
               </div>

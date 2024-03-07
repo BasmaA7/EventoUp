@@ -45,7 +45,7 @@
               aria-labelledby="dropdownDefaultButton">
               @foreach ($categories as $category)
                   <li>
-                      <a href="{{ route('index', ['id' => $category->id]) }}"
+                      <a href="{{ route('event.index', ['id' => $category->id]) }}"
                           class="block px-4 py-2 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-gray-400">
                           {{ $category->title }}
                       </a>

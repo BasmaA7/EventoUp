@@ -5,13 +5,16 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Models\Event;
 
 class CategoryController extends Controller
 {
     public function index()
     {
+        $events = Event::all(); 
+
         $categories = Category::all();
-        return view('Admin.categories.create', compact('categories'));
+        return view('Admin.categories.create', compact('categories','events'));
     }
 
     public function create()
@@ -32,6 +35,7 @@ class CategoryController extends Controller
             'image' => $request->input('image'),
 
         ]);
+        $imagePath = $request->file('image')->store('images/categories', 'public');
 
         return view('home',compact('categorie','categories'));
 
@@ -64,6 +68,8 @@ class CategoryController extends Controller
 
     public function destroy(Category $category)
     {
+        $category->events()->delete();
+
         $category->delete();
 
         return redirect()->route('categories.index')->with('success', 'Category deleted successfully');

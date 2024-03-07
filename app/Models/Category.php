@@ -15,4 +15,10 @@ class Category extends Model
         'title',
         'image',
     ];
+
+
+    public function events(){
+        return $this->hasMany(Event::class);
+
+    }
 }
