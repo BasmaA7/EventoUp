@@ -28,7 +28,8 @@
                     </div>
                     <div class="mb-4">
                         <label for="image" class="text-lg font-serif">Image:</label>
-                        <input type="file" name="image"
+                        
+                        <input type="file" name="image" accept="image/*
                             class="ml-2 outline-none py-1 px-2 text-md border-2 rounded-md w-full" />
                     </div>
                     <div class="mb-4">

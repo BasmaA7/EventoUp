@@ -16,12 +16,11 @@
             <div class="w-full px-6 py-6 mx-auto">
                 <!-- row 1 -->
                 <div class="flex flex-wrap -mx-3">
-                    <h1>hiiiiiiiiiiiiiiiiiiii</h1>
                     <!-- card1 -->
                   <div class="w-full max-w-full px-3 mb-6 sm:w-1/2 sm:flex-none xl:mb-0 xl:w-1/4">
                     <div class="relative flex flex-col min-w-0 break-words bg-white shadow-soft-xl rounded-2xl bg-clip-border">
                       <div class="flex-auto p-4">
-                        {{-- <div class="flex flex-row -mx-3">
+                        <div class="flex flex-row -mx-3">
                           <div class="flex-none w-2/3 max-w-full px-3">
                             <div>
                               <p class="mb-0 font-sans text-sm font-semibold leading-normal">Today's Money</p>
@@ -36,7 +35,7 @@
                               <i class="ni leading-none ni-money-coins text-lg relative top-3.5 text-white"></i>
                             </div>
                           </div>
-                        </div> --}}
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -166,79 +165,25 @@
                   <!-- ***********Table********* -->
     
                
- <div>
-  <h1>  Organisateur  </h1>
  
-  <div class="overflow-x-auto">
-    <div class="bg-blue-500 hover:bg-blue-700 inline-block font-bold py-2 px-4 rounded-full cursor-pointer">
-        <a href="" class="btn btn-primary">Add +</a>
-    </div>
- </div>
                
 
 
-             
-                  <div class="shadow-lg rounded-lg overflow-hidden mx-4 md:mx-10">
-                    <table class="w-full table-fixed">
-                      
-                        <thead>
-                            <tr class="bg-gray-100">
-                                <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">Title</th>
-                                <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">Description</th>
-                                <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">Date</th>
-                                <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">Location</th>
-                                <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">Places</th>
-                                <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">Status</th>
-                                <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody class="bg-white">
-                          @foreach ($events as $event)
-                              <tr>
-                                  <td class="py-4 px-6 border-b border-gray-200">{{$event->title}}</td>
-                                  <td class="py-4 px-6 border-b border-gray-200 truncate">{{$event->description}}</td>
-                                  <td class="py-4 px-6 border-b border-gray-200">{{$event->date}}</td>
-                                  <td class="py-4 px-6 border-b border-gray-200">
-                                      <span class="bg-green-500  py-1 px-2 rounded-full text-xs">Active</span>
-                                  </td>
-                                  <td class="py-4 px-6 border-b border-gray-200">
-                                      <div class="flex flex-row">
-                                          <button type="button" class="focus:outline-none  bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Green</button>
-                                          <button type="button" class="focus:outline-none  bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Green</button>
-                                      </div>
-                                  </td>
-                              
 
-                              </tr>
-                          @endforeach
-                      </tbody>
-                      
-                    </table>
-                </div>
-           
-        
-                 
-        
-              </div>
-
-
-
-                             <!-- ***********Table Event********* -->
-   
- <div>
+ 
   <h1>  Events  </h1>
  
   <div class="overflow-x-auto">
-    <div class="bg-blue-500 hover:bg-blue-700 inline-block font-bold py-2 px-4 rounded-full cursor-pointer">
-        <a href="{{route('event.create')}}" class="bg-blue-500 hover:bg-blue-700  font-bold py-2 px-4 rounded-full inline-block">Add +</a>
+    <div class="inline-block  px-6 py-3 my-4 text-xs font-bold text-center text-white uppercase align-middle transition-all ease-in border-0 rounded-lg select-none shadow-soft-md bg-150 bg-x-25 leading-pro bg-gradient-to-tl from-purple-700 to-purple-500 hover:shadow-soft-2xl hover:scale-102">
+      <a href="{{route('event.create')}}" class="bg-blue-500 hover:bg-blue-700  font-bold py-2 px-4 rounded-full inline-block">Add +</a>
     </div>
 </div>
                
 
 
              
-                  <div class="shadow-lg rounded-lg overflow-hidden mx-4 md:mx-10">
-                    <table class="w-full table-fixed">
+<div class="relative flex flex-col min-w-0 break-words bg-white shadow-soft-xl rounded-2xl bg-clip-border">
+  <table class="w-full table-fixed">
                       
                         <thead>
                             <tr class="bg-gray-100">
@@ -260,7 +205,7 @@
                                   <td class="py-4 px-6 border-b border-gray-200">{{$event->date}}</td>
                                   <td class="py-4 px-6 border-b border-gray-200">
                                     @if ($event->image)
-                                        <img src="{{ asset('storage/' . $event->image) }}" alt="{{ $event->title }}" class="w-20 h-20">
+                                        <img src="{{ asset('storage/' . $event->image) }}" alt="Image for event" class="w-20 h-20">
                                     @else
                                         No Image
                                     @endif
@@ -272,13 +217,13 @@
                                   </td>
                                   <td class="py-4 px-6 border-b border-gray-200">
                                     <div class="flex flex-row gap-4">
-                                      <a class="bg-green-700 mx-1" href="{{ route('event.edit', $event->id) }}">Edit</a>
-                                      {{-- <button type="submit" class="focus:outline-none bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Edit</button> --}}
+                                      <a class="inline-block  px-6 py-3 my-4 text-xs font-bold text-center text-white uppercase align-middle transition-all ease-in border-0 rounded-lg select-none shadow-soft-md bg-150 bg-x-25
+                                       leading-pro bg-gradient-to-tl from-purple-700 to-purple-500 hover:shadow-soft-2xl hover:scale-102" href="{{ route('event.edit', $event->id) }}">Edit</a>
                                       <span >
                                         <form action="{{ route('event.destroy', $event) }}" method="post">
                                           @csrf
                                           @method('DELETE')
-                                          <button type="submit" onclick="return confirm('Are you sure you want to delete this event?')">Delete</button>
+                                          <button class="inline-block w-full px-6 py-3 my-4 text-xs font-bold text-center text-white uppercase align-middle transition-all ease-in border-0 rounded-lg select-none shadow-soft-md bg-150 bg-x-25 leading-pro bg-gradient-to-tl from-purple-700 to-pink-500 hover:shadow-soft-2xl hover:scale-102"   type="submit" onclick="return confirm('Are you sure you want to delete this event?')">Delete</button>
                                       </form>
                                     </span>
                                     </div>
@@ -287,12 +232,12 @@
                                   <form action="{{ route('accept', $event->id) }}" method="POST">
                                     @csrf
                                     @method('PATCH')
-                                    <button type="submit" class="btn btn-primary d-block">accept</button>
+                                    <button type="submit" class="text-sm leading-normal text-lime-500 font-weight-bolder ">accept</button>
                                 </form>
                                 <form action="{{ route('refuse', $event->id) }}" method="POST">
                                   @csrf
                                   @method('PATCH')
-                                  <button type="submit" class="btn btn-danger d-block">refuse</button>
+                                  <button type="submit" class="text-sm leading-normal text-red-600 font-weight-bolder">refuse</button>
                               </form>
                               </td>
 
@@ -311,45 +256,39 @@
   <h1> Admin category  </h1>
  
   <div class="overflow-x-auto">
-    <div class="bg-blue-500 hover:bg-blue-700 inline-block font-bold py-2 px-4 rounded-full cursor-pointer">
-        <a href="{{route('categories.create')}}" class="btn btn-primary">Add +</a>
+    <div class="inline-block  px-6 py-3 my-4 text-xs font-bold text-center text-white uppercase align-middle transition-all ease-in border-0 rounded-lg select-none shadow-soft-md bg-150 bg-x-25 leading-pro bg-gradient-to-tl from-purple-700 to-purple-500 hover:shadow-soft-2xl hover:scale-102">
+        <a href="{{route('categories.create')}}" class="txt-red-500">Add +</a>
     </div>
  </div>
                
 
 
 
-                  <div class="shadow-lg rounded-lg overflow-hidden mx-4 md:mx-10">
+ <div class="relative flex flex-col min-w-0 break-words bg-white shadow-soft-xl rounded-2xl bg-clip-border">
 
                     <table class="w-full table-fixed">
 
                         <thead>
                             <tr class="bg-gray-100">
-                                <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">Title</th>
-                                <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">Image</th>
+                                <th class="w-1/4 py-4 px-6 text-center text-gray-600 font-bold uppercase">Title</th>
                                 <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">Action</th>
                             </tr>
                         </thead>
                         <tbody class="bg-white">
                           @foreach ($categories as $category)
                               <tr>
-                                  <td class="py-4 px-6 border-b border-gray-200">{{$category->title}}</td>
-                                  <td class="py-4 px-6 border-b border-gray-200">
-                                    @if ($category->image)
-                                        <img src="{{ asset('storage/' . $category->image) }}" alt="{{ $category->title }}" class="w-20 h-20">
-                                    @else
-                                        No Image
-                                    @endif
-                                </td>                                  
+                                  <td class="py-4 px-6 text-center border-b border-gray-200">{{$category->title}}</td>
+                                                               
                                 <td class="py-4 px-6 border-b border-gray-200">
                                   <div class="flex flex-row gap-4">
-                                    <a class="bg-green-700 mx-1" href="{{ route('categories.edit', $category->id) }}">Edit</a>
+                                    <a class="inline-block  px-6 py-3 my-4 text-xs font-bold text-center text-white uppercase align-middle transition-all ease-in border-0 rounded-lg select-none shadow-soft-md bg-150 bg-x-25
+                                    leading-pro bg-gradient-to-tl from-purple-700 to-purple-500 hover:shadow-soft-2xl hover:scale-102" href="{{ route('categories.edit', $category->id) }}">Edit</a>
                                     {{-- <button type="submit" class="focus:outline-none bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Edit</button> --}}
                                     <span >
                                       <form action="{{ route('categories.destroy', $category) }}" method="post">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" onclick="return confirm('Are you sure you want to delete this event?')">Delete</button>
+                                        <button class="inline-block w-full px-6 py-3 my-4 text-xs font-bold text-center text-white uppercase align-middle transition-all ease-in border-0 rounded-lg select-none shadow-soft-md bg-150 bg-x-25 leading-pro bg-gradient-to-tl from-purple-700 to-pink-500 hover:shadow-soft-2xl hover:scale-102    type="submit" onclick="return confirm('Are you sure you want to delete this event?')">Delete</button>
                                     </form>
                                   </span>
                                   </div>

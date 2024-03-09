@@ -17,10 +17,14 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/showevent/{id}',[EventController::class, 'ShowEvents'])->name('showevent');
+
 Route::patch('/event/accept/{event}', [EventController::class, 'accept'])->name('accept');
 Route::patch('/event/refuse/{event}', [EventController::class, 'refuse'])->name('refuse');
 Route::get('/organize',  [RegisterController::class, 'showRegistrationForm'])->name('showRegistrationForm');
 Route::post('/organize',  [RegisterController::class, 'registerStore'])->name('registerStore');
+Route::post('/reserve/{event}', [ProfileController::class , 'reserve'])->name("reserve");
+
 // Route::get('/addevent',[EventController::class,'create'])->name('create');
 // Route::post('/addevent', [EventController::class, 'store'])->name('create');
 // Route::get('/dashboard', [EventController::class,'index'])->name('dashboard');

@@ -12,7 +12,7 @@ class CategoryController extends Controller
     public function index()
     {
         $events = Event::all(); 
-
+       
         $categories = Category::all();
         return view('Admin.categories.create', compact('categories','events'));
     }
@@ -48,21 +48,21 @@ class CategoryController extends Controller
 
     public function edit(Category $category)
     {
+        $categories = Category::all();
 
-        return view('admin.categories.edit', compact('category'));
+        return view('admin.categories.edit', compact('category','categories'));
     }
 
     public function update(Request $request, Category $category)
     {
         $request->validate([
             'title' => 'required|string|max:255',
-            'image' => 'required|image', 
 
         ]);
 
         $category->update($request->all());
 
-        return redirect()->route('categories.index')->with('success', 'Category updated successfully');
+        return redirect()->route('event.index')->with('success', 'Category updated successfully');
     }
 
     public function destroy(Category $category)
@@ -71,6 +71,6 @@ class CategoryController extends Controller
 
         $category->delete();
 
-        return redirect()->route('categories.index')->with('success', 'Category deleted successfully');
+        return redirect()->route('event.index')->with('success', 'Category deleted successfully');
     }
 }
