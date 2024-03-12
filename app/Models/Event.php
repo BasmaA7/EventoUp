@@ -22,7 +22,10 @@ class Event extends Model
         'validation',
         'status',         
     ];
-   
+    public function toJson($options = 0)
+    {
+        return json_encode(['title' => $this->title], $options); 
+    }
     public function category()
     {
         return $this->belongsTo(Category::class);

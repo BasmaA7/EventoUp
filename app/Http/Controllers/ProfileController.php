@@ -60,35 +60,19 @@ class ProfileController extends Controller
         return Redirect::to('/');
     }
 
-    public function reserve(Request $request,Event $event){
+    function changeRole(Request $request)
+    {
         $user = auth()->user();
-        $restplaces =  $event->quantity - Reservation::where("event_id",$event->id)->get()->count();
-      
-        if($restplaces <1) return back()->with("error", " No More places in this Event ");
-        // Assuming the relationship is one-to-many
-        if($event->validation == "automatique"){
-                $reservation = Reservation::create([
-                            "user_id" => $user->id
-                            ,
-                            "event_id" => $event->id
-                            ,
-                            "status" => "acceptée"
-                        ]);
-            
-            return back()->with("success", "your reservation  submited successfuly ");
-        }else  {
-            $reservation = Reservation::create([
-            "user_id" => $user->id
-            ,
-            "event_id" => $event->id
-            ,
-            "status" => "en_attente"
-        ]);
-        return back()->with("success", "your reservation  submited successfuly whate the orginaier to accept  your reservation  ");
-
-        }
-        
-       
     
+        if ($user->hasRole("spectator")) {
+            $user->removeRole("spectator");
+            $user->assignRole("organizer");
+        } else {
+            $user->removeRole("organizer");
+            $user->assignRole("spectator");
+        }
+
+        return back()->with("success","role changed with success");
     }
+
 }

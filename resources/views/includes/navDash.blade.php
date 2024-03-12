@@ -1,53 +1,74 @@
-<nav class="relative flex flex-wrap items-center justify-between px-0 py-2 mx-6 transition-all shadow-none duration-250 ease-soft-in rounded-2xl lg:flex-nowrap lg:justify-start" navbar-main navbar-scroll="true">
-  <div class="flex items-center justify-between w-full px-4 py-1 mx-auto flex-wrap-inherit">
-    <nav>
-      <!-- breadcrumb -->
-      <ol class="flex flex-wrap pt-1 mr-12 bg-transparent rounded-lg sm:mr-16">
-        <li class="text-sm leading-normal">
-          <a class="opacity-50 text-slate-700" href="javascript:;">Pages</a>
-        </li>
-        <li class="text-sm pl-2 capitalize leading-normal text-slate-700 before:float-left before:pr-2 before:text-gray-600 before:content-['/']" aria-current="page">Dashboard</li>
-      </ol>
-      <h6 class="mb-0 font-bold capitalize">Dashboard</h6>
-    </nav>
+<!DOCTYPE html>
+<html lang="en">
 
-    <div class="flex items-center mt-2 grow sm:mt-0 sm:mr-6 md:mr-0 lg:flex lg:basis-auto">
-      <div class="flex items-center md:ml-auto md:pr-4">
-        <div class="relative flex flex-wrap items-stretch w-full transition-all rounded-lg ease-soft">
-          <span class="text-sm ease-soft leading-5.6 absolute z-50 -ml-px flex h-full items-center whitespace-nowrap rounded-lg rounded-tr-none rounded-br-none border border-r-0 border-transparent bg-transparent py-2 px-2.5 text-center font-normal text-slate-500 transition-all">
-            <i class="fas fa-search"></i>
-          </span>
-          <input type="text" class="pl-8.75 text-sm focus:shadow-soft-primary-outline ease-soft w-1/100 leading-5.6 relative -ml-px block min-w-0 flex-auto rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding py-2 pr-3 text-gray-700 transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none focus:transition-shadow" placeholder="Type here..." />
-        </div>
-      </div>
-      <ul class="flex flex-row justify-end pl-0 mb-0 list-none md-max:w-full">
-        <!-- online builder btn  -->
-        <!-- <li class="flex items-center">
-          <a class="inline-block px-8 py-2 mb-0 mr-4 text-xs font-bold text-center uppercase align-middle transition-all bg-transparent border border-solid rounded-lg shadow-none cursor-pointer leading-pro border-fuchsia-500 ease-soft-in hover:scale-102 active:shadow-soft-xs text-fuchsia-500 hover:border-fuchsia-500 active:bg-fuchsia-500 active:hover:text-fuchsia-500 hover:text-fuchsia-500 tracking-tight-soft hover:bg-transparent hover:opacity-75 hover:shadow-none active:text-white active:hover:bg-transparent" target="_blank" href="https://www.creative-tim.com/builder/soft-ui?ref=navbar-dashboard&amp;_ga=2.76518741.1192788655.1647724933-1242940210.1644448053">Online Builder</a>
-        </li> -->
-        <a class="inline-block w-full px-6 py-3 my-4 text-xs font-bold text-center text-white uppercase align-middle transition-all ease-in border-0 rounded-lg select-none shadow-soft-md bg-150 bg-x-25 leading-pro bg-gradient-to-tl from-purple-700 to" href="{{ $variable->name ?? '#' }}">
-        
-        <li class="flex items-center pl-4 xl:hidden">
-          <a href="javascript:;" class="block p-0 text-sm transition-all ease-nav-brand text-slate-500" sidenav-trigger>
-            <div class="w-4.5 overflow-hidden">
-              <i class="ease-soft mb-0.75 relative block h-0.5 rounded-sm bg-slate-500 transition-all"></i>
-              <i class="ease-soft mb-0.75 relative block h-0.5 rounded-sm bg-slate-500 transition-all"></i>
-              <i class="ease-soft relative block h-0.5 rounded-sm bg-slate-500 transition-all"></i>
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>Evento</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <script src="https://unpkg.com/ionicons@latest/dist/ionicons.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+        integrity="sha512-JRLPSZv9J+Ssr1izFGAHgjOCVP4g/WjffoFLkFlO6vrDSS6LQ4NEnAMryKkYYFaGC5/F9EVudv/UdhhKIzeOUA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{{ asset('asset/css/style.css') }}">
+</head>
+
+<body>
+
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top bg-white shadow-md w-full">
+        <div class="container mx-auto py-4 flex justify-between items-center">
+
+            <div class="logo">
+                <h1 class="text-light text-2xl"><a href="index.html">Evento</a></h1>
             </div>
-          </a>
-        </li>
-        <li class="flex items-center px-4">
-          <a href="javascript:;" class="p-0 text-sm transition-all ease-nav-brand text-slate-500">
-            <i fixed-plugin-button-nav class="cursor-pointer fa fa-cog"></i>
-            <!-- fixed-plugin-button-nav  -->
-          </a>
-        </li>
 
-      
+            <nav id="navbar" class="navbar">
+                <ul class="flex space-x-4">
+                    <li><a class="text-gray-600 hover:text-gray-800" href="">Home</a></li>
+                    <li><a class="text-gray-600 hover:text-gray-800" href="#about">About Us</a></li>
+                    <li><a class="text-gray-600 hover:text-gray-800" href="">All Events</a></li>
+                    {{-- @can('Manage_users')
+                        <li><a class="text-gray-600 hover:text-gray-800" href="{{ route('categorie.index') }}">Categories</a></li>
+                    @endcan --}}
+                    <li><a class="text-gray-600 hover:text-gray-800" href="#contact">Contact</a></li>
+                </ul>
+            </nav>
 
-         
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
+            <div class="relative group">
+              <button class= "text-gray-600 group-hover:text-gray-800 focus:outline-none  focus:text-gray-800">
+                  {{ Auth::user()->name }}
+              </button>
+              <ul class="absolute hidden space-y-2 bg-white rounded-md shadow-md top-10 right-0 z-10">
+                  <li><a class="block px-4 py-2 text-gray-700 hover:bg-gray-200" href="{{ route('profile.edit') }}">Profile</a></li>
+          
+                  @can('Book_an_event')
+                      <li><a class="block px-4 py-2 text-gray-700 hover:bg-gray-200" href="{{ route('event.create') }}">Organizer</a></li>
+                  @endcan
+          
+                  @can('Manage_users')
+                      <li><a class="block px-4 py-2 text-gray-700 hover:bg-gray-200" href="{{ route('dashboard') }}">Dashboard</a></li>
+                      <li><a class="block px-4 py-2 text-gray-700 hover:bg-gray-200" href="">Users</a></li>
+                  @endcan
+          
+                  <li>
+                      <form method="POST" action="{{ route('logout') }}">
+                          @csrf
+                          <button type="submit" class="block w-full px-4 py-2 text-left text-gray-700 hover:bg-gray-200">
+                              Log Out
+                          </button>
+                      </form>
+                  </li>
+              </ul>
+          </div>
+          
+        </div>
+    </header>
+
+   
+

@@ -14,20 +14,37 @@ use Illuminate\Support\Facades\Auth;
 class EventController extends Controller
 {
   public function index() {
-    $events = Event::latest()->paginate(5); 
-    $categories = Category::all();
-    
+
+    $events = Event::where('user_id',Auth::id())->paginate(10); 
+    return view('Organisateur.Evenements.index', compact('events'));
 
 
-
-    foreach ($events as $event) {
-        $event->reservations = $event->reservations()->where('status', 'en_attente')->get();
-    }
-    return view('dashboard', compact('categories', 'events'))
-        ->with('i', (request()->input('page', 1) - 1) * 5);
 }
 
+// public function index()
+//     {
 
+//         if (Auth::user()->hasRole('spectator')) {
+
+//             $userId = Auth::id();
+//             $events = Event::where('organizer_id', $userId)->get();
+//         } else {
+
+//             $categories = Categorie::all();
+//             $events = Event::with('user', 'categorie')->where('status', 'pending')->paginate(6);
+
+//         }
+//         $categories = Categorie::all();
+//         return view('dashboard', compact('events', 'categories'));
+//     }
+public function AdminDash(){
+    
+    $events = Event::all(); 
+    $reservations = Reservation::all();
+    return view('Admin.Evenements.eventAdmin', compact('events', 'reservations'));
+
+
+}
 public function create()
     {
         $categories= Category::all();
@@ -37,8 +54,7 @@ public function create()
     
     public function store(CreateEventRequest $request){
         $userId=Auth::id();
-        $categories= Category::all();
-        $events = Event::all();
+        // $events = Event::all();
         $date = Carbon::parse($request->input('date'))->format('Y-m-d');
 
         if ($request->hasFile('image')) {
@@ -58,11 +74,9 @@ public function create()
            'validation'=>$request->input('validation'),
 
         ]);
-         // associate the event with the user, you can use:
-    // $user = Auth::user();
-    // $user->events()->save($event);
-        return view('event', compact('categories','date','events'));
-
+        
+   
+        return redirect()->route('my_event')->with('success','event created successfully');
     
     }
     public function edit(Event $event){
@@ -102,27 +116,43 @@ public function destroy(Event $event)
 }
 
 
-// public function showDashboard()
-// {
-//     $events = Event::all(); 
-//     $reservations = Reservation::all();
-//     return view('dashboard.index', compact('events', 'reservations'));
-// }
+
 
 public function accept(Event $Event)
     {
         Event::where('id',$Event->id)->update(['status'=>'accepted']);
-        return redirect(route('event'));
+        return redirect(route('my_event'));
 
     }
     public function refuse(Event $Event)
     {
         Event::where('id',$Event->id)->update(['status'=>'refused']);
-        return redirect(route('dashboard'));
+        return redirect(route('my_event'));
 
     }
 
-  
+    public function search(Request $request)
+    {
+        $q = $request->input('q');
+        $category = $request->input('category');
+        $categories = Category::all();
+        if($category){
+                $events = Event::where('title', 'like', "%$q%")
+                    ->orWhere("category_id", $category  )
+                    ->latest()
+                    ->paginate(5);
+        }else{
+            $events = Event::where('title', 'like', "%$q%")
+            ->latest()
+            ->paginate(5);
+        }
+       
+    
+        return view('home', compact('events', 'categories'));
+    }
+
+
+   
 public function ShowEvents($id)
 {
     $categories=Category::all();

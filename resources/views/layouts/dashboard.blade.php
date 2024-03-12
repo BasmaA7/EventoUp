@@ -21,6 +21,9 @@
     <!-- Nepcha Analytics (nepcha.com) -->
     <!-- Nepcha is a easy-to-use web analytics. No cookies and fully compliant with GDPR, CCPA and PECR. -->
     <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
+    <script src="https://unpkg.com/ionicons@latest/dist/ionicons.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
   
   </head>
 
@@ -36,7 +39,25 @@
        @include('includes.footerDash')
       <!-- end cards -->
     </main>
- 
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+          // Récupérer les éléments du menu
+          var userButton = document.querySelector('.group-hover\\:text-gray-800');
+          var dropdown = document.querySelector('.group > ul');
+
+          // Ajouter un écouteur d'événements au bouton utilisateur pour basculer la visibilité de la dropdown
+          userButton.addEventListener('click', function () {
+              dropdown.classList.toggle('hidden');
+          });
+
+          // Ajouter un écouteur d'événements pour fermer la dropdown lorsqu'on clique en dehors
+          document.addEventListener('click', function (event) {
+              if (!dropdown.contains(event.target) && !userButton.contains(event.target)) {
+                  dropdown.classList.add('hidden');
+              }
+          });
+      });
+  </script>
 
   </body>
 

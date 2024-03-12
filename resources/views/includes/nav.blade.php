@@ -1,4 +1,4 @@
-<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+{{-- <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
 <div class="">
   <div class="antialiased bg-gray-100 dark-mode:bg-gray-900">
   <div class="w-full text-gray-700 bg-white dark-mode:text-gray-300 dark-mode:bg-gray-800">
@@ -27,33 +27,6 @@
         </div>
     @endif                                         
         <a class="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="#">About</a>
-        <li id="dropdownDefaultButton" data-dropdown-toggle="dropdown" class="relative group">
-          <a href="#"
-              class="text-gray-700  font-semibold  focus:outline-none  hover:text-gray-900 text-sm   inline-flex items-center ">
-              Category
-              <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                  fill="none" viewBox="0 0 10 6">
-                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                      stroke-width="2" d="m1 1 4 4 4-4" />
-              </svg>
-          </a>
-
-          <!-- Dropdown menu -->
-          <div id="dropdown"
-          class="z-10 hidden bg-white bg-opacity-90 divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 absolute top-full left-0">
-          <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
-              aria-labelledby="dropdownDefaultButton">
-              @foreach ($categories as $category)
-                  <li>
-                      <a href="{{ route('event.index', ['id' => $category->id]) }}"
-                          class="block px-4 py-2 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-gray-400">
-                          {{ $category->title }}
-                      </a>
-                  </li>
-              @endforeach
-          </ul>
-      </div>
-      </li>
         <a class="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="#">Contact</a>
         <a class="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="#">Create Event</a>
            
@@ -61,21 +34,121 @@
     </div>
   </div>
 </div>
-  </div>
+  </div> --}}
 
-  <script>
-    document.getElementById('dropdownDefaultButton').addEventListener('click', function() {
-        var dropdownMenu = document.getElementById('dropdown');
-        dropdownMenu.classList.toggle('hidden');
-    });
+ 
 
-    document.getElementById('dropdownDefaultButton2').addEventListener('click', function() {
-        var dropdownMenu2 = document.getElementById('dropdown2');
-        dropdownMenu2.classList.toggle('hidden');
-    });
-</script>
+  <!DOCTYPE html>
+  <html lang="en">
+  
+  <head>
+      <meta charset="utf-8">
+      <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  
+      <title>Evento</title>
+      <meta content="" name="description">
+      <meta content="" name="keywords">
+  
+      <script src="https://unpkg.com/ionicons@latest/dist/ionicons.js"></script>
+      <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+          integrity="sha512-JRLPSZv9J+Ssr1izFGAHgjOCVP4g/WjffoFLkFlO6vrDSS6LQ4NEnAMryKkYYFaGC5/F9EVudv/UdhhKIzeOUA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+      <link rel="stylesheet" href="{{ asset('asset/css/style.css') }}">
+  </head>
+  
+  <body>
+  
+      <!-- ======= Header ======= -->
+      <header id="header" class="fixed-top bg-white shadow-md w-full">
+          <div class="container mx-auto py-4 flex justify-between items-center">
+  
+              <div class="logo">
+                  <h1 class="text-light text-2xl"><a href="index.html">Evento</a></h1>
+              </div>
+  
+              <nav id="navbar" class="navbar">
+                  <ul class="flex space-x-4">
+                      <li><a class="text-gray-600 hover:text-gray-800" href="">Home</a></li>
+                      <li><a class="text-gray-600 hover:text-gray-800" href="#about">About Us</a></li>
+                      @auth
+                      
+                      <li><a class="text-gray-600 hover:text-gray-800" href="{{route('my_event')}}">Dashboard</a></li>
 
+                  @endauth
+                      @auth
+                      
+                      <li><a class="text-gray-600 hover:text-gray-800" href="{{route('tickets.ticket')}}">My Tickets</a></li>
 
+                  @endauth
+                      {{-- @can('Manage_users')
+                          <li><a class="text-gray-600 hover:text-gray-800" href="{{ route('categorie.index') }}">Categories</a></li>
+                      @endcan --}}
+                      <li><a class="text-gray-600 hover:text-gray-800" href="#contact">Contact</a></li>
+                      @role('organizer')
+                      <li><a class="text-gray-600 hover:text-gray-800" href="{{route('event.create')}}">Create Event</a></li>
+                      @endrole
+                  </ul>
+                
+              </nav>
+              @guest
+              <div>
+                  <a href="{{ route('login') }}" class="text-gray-600 hover:text-gray-800">Login</a>
+                  <span class="text-gray-600 mx-2">|</span>
+                  <a href="{{ route('register') }}" class="text-gray-600 hover:text-gray-800">Register</a>
+              </div>
+          @else
+  
+              <div class="relative group">
+             
+                <button class= "text-gray-600 group-hover:text-gray-800 focus:outline-none  focus:text-gray-800">
+                    {{ Auth::user()->name }}
+                </button>
+                <ul class="absolute hidden space-y-2 bg-white rounded-md shadow-md top-10 right-0 z-10">
+                    <li><a class="block px-4 py-2 text-gray-700 hover:bg-gray-200" href="{{ route('profile.edit') }}">Profile</a></li>
+            
+                   
+                        <li>
+                            <form class="block px-4 py-2 text-gray-700 hover:bg-gray-200" action="{{route("changeRole")}}" method="post">
+                                @csrf
+
+                                <button class="  cursor-pointer py-1 px-2 z-50  " >
+                                    @role("spectator")
+                                      mode orginaze
+
+                                    @else 
+                                      mode user
+                                    @endrole
+                                </button>
+                            
+                            </form>
+                        </li>
+                    
+            
+                    @can('Manage_users')
+                        <li><a class="block px-4 py-2 text-gray-700 hover:bg-gray-200" href="{{ route('dashboard') }}">Dashboard</a></li>
+                        <li><a class="block px-4 py-2 text-gray-700 hover:bg-gray-200" href="">Users</a></li>
+                    @endcan
+            
+                    <li>
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button type="submit" class="block w-full px-4 py-2 text-left text-gray-700 hover:bg-gray-200">
+                                Log Out
+                            </button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+            @endguest
+
+          </div>
+      </header>
+  
+     
+  
+  
 
 
 

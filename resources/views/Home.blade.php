@@ -1,41 +1,56 @@
 @extends('layouts.mastar')
 @section('content')
-<section class="text-gray-600 body-font">
-  <div class="bg-red-100 py-8 grid grid-cols-1 md:grid-cols-2">
-      <!-- Left hero section-->
-      <div class="flex flex-col justify-center p-4 py-10 md:p-10">
-        <div>
-            <h1 class="title-font sm:text-4xl mb-4 font-serif font-medium text-2xl lg:w-2/3">
-               Evinto your best .</h1>
-            <p class="lg:w-2/3">Explore and Elevate Your Space with Our Exquisite Plant Collection!</p>
-        </div>
+
+
+<div class="relative bg-gradient-to-r from-purple-600 to-blue-600 h-screen text-white overflow-hidden">
+  <div class="absolute inset-0">
+    <img  src="https://www.larousse.fr/encyclopedie/data/images/1311972-Spectateurs_debout_lors_dun_concert.jpg" alt="Background Image" class="object-cover object-center w-full h-full" />
+    <div class="absolute inset-0 bg-black opacity-50"></div>
+  </div>
+  
+  <div class="relative   flex flex-col justify-center items-center h-full text-center">
+    <h1 class="text-5xl font-bold leading-tight mb-4">Welcome to Evento  Website</h1>
+    <p class="text-lg text-gray-300 mb-8">Discover amazing features and services that await you.</p>
     
-        <div class="mt-8 ">
-            <form  class="flex">
-                <label for="simple-search" class="sr-only">Search</label>
-                <div class="w-full">
-                    <input type="text" name='q' class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5" placeholder="Search Your Plants ..." required />
-                </div>
-                <button type="submit" class="p-2.5 ms-2 text-sm font-medium text-white bg-green-800 rounded-lg border border-blue-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
-                    <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
-                    </svg>
-                    <span class="sr-only">Search</span>
-                </button>
-            </form>
-        </div>
+    <a href="#" class="bg-yellow-400 text-gray-900 hover:bg-yellow-300 py-2 px-6 rounded-full text-lg font-semibold transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg">Get Started</a>
+  </div>
+</div>
+
+<form action="{{ route('search') }}" method="GET" class=" mt-8 max-w-lg mx-auto">
+  <div class="flex items-center">
+      <div class="relative">
         
-    </div>
-    
-      
-      <!-- Right hero section-->
-      <div class="md:ml-4">
-          <img class="object-cover w-full h-full" src="https://www.larousse.fr/encyclopedie/data/images/1311972-Spectateurs_debout_lors_dun_concert.jpg"
-              alt="">
+        <select name="category" id="">
+          @foreach ($categories as $category)
+          <option value="">All Categories</option>
+
+             <option value="{{$category->id}}">{{$category->title}}</option>
+         @endforeach
+       </select>
+      </div>
+
+      <div class="relative  w-full ml-2">
+          <div class=" flex">
+              <label for="simple-search" class="sr-only">Search</label>
+              <div class="flex-1">
+                  <input type="text" name="q" class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5" placeholder="Search ..." required />
+              </div>
+              <button type="submit" class="p-2.5 ml-2 text-sm font-medium text-white bg-blue-800 rounded-lg border border-blue-700 hover:bg-blue-400 focus:ring-4 focus:outline-none focus:ring-blue-300">
+                  <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                  </svg>
+                  <span class="sr-only">Search</span>
+              </button>
+          </div>
       </div>
   </div>
-</section>
-<section class="text-gray-600 body-font">
+</form>
+
+
+
+
+
+<section class="text-gray-900 body-font">
     <div class="container px-5 py-24 mx-auto">
     
   <x-alert />
@@ -45,7 +60,7 @@
 
         <div class="p-4 md:w-1/3">
           <div class="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
-            <img src="{{ asset('storage/' . $event->image) }}" alt="Image for event" class="w-20 h-20">
+            <img src="{{ asset('storage/' . $event->image) }}" alt="Image for event" class="object-cover object-center w-full  block">
             <div class="p-6">
               
                               
@@ -54,8 +69,9 @@
               <p class="leading-relaxed mb-3">{{$event->description}}</p>
               <form action="{{route('reserve',$event->id)}}" method="post" >
           @csrf
- 
-      <button    type="submit" class="btn btn-primary">Reserve</button>
+        @can('Book_an_event')
+      <button    type="submit" class="bg-yellow-400 text-gray-900 hover:bg-yellow-300 py-2 px-6 rounded-full text-lg font-semibold transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg">Reserve</button>
+      @endcan
 </form>
               <div class="flex items-center flex-wrap">
                 <a  href="{{route('showevent',$event->id)}}"   class="text-indigo-500 inline-flex items-center md:mb-2 lg:mb-0">Learn More
@@ -85,5 +101,6 @@
     </div>
   </section>
 @endsection
+
 
 
